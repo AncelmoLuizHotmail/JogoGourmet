@@ -1,0 +1,98 @@
+﻿@page "/"
+
+@inject IDialogService DialogService
+
+<PageTitle>Início</PageTitle>
+
+<MudGrid Justify="Justify.Center">
+
+    <MudItem hidden="@PanelStart" xs="12" sm="12" md="8" lg="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-10" Outlined="true" Elevation="3">
+            <div class="d-flex justify-center pb-2 pt-2">
+                <h1>Jogo Gourmet</h1>
+            </div>
+            <div class="d-flex justify-center pb-8 pt-8">
+                <MudImage Src="img/prato.jpeg" Alt="Prato do dia" Width="250" Elevation="25" Class="rounded-lg"></MudImage>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <p>Seja bem vindo! Vamos jogar?</p>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <MudButton Variant="Variant.Filled" OnClick="@ShowStart" DropShadow="false" Color="Color.Primary">Iniciar</MudButton>
+            </div>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem hidden="@PanelStep01" xs="12" sm="12" md="8" lg="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-10" Outlined="true" Elevation="3">
+            <div class="d-flex justify-center pb-2 pt-2">
+                <p>Pense em um prato que você gosta</p>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <MudButton Variant="Variant.Filled" OnClick="@ShowStep01" DropShadow="false" Color="Color.Primary">OK</MudButton>
+            </div>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem hidden="@PanelStep02" xs="12" sm="12" md="8" lg="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-10" Outlined="true" Elevation="3">
+            <div class="d-flex justify-center pb-2 pt-2">
+                <p>O prato que você pensou é <strong>@Caracteristica</strong></p>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <MudButton Variant="Variant.Filled" @onclick="(()=>ShowStep03(true))" DropShadow="false" Color="Color.Success">Sim</MudButton>
+                <MudButton Variant="Variant.Filled" @onclick="(()=>ShowStep03(false))" DropShadow="false" Color="Color.Warning">Não</MudButton>
+            </div>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem hidden="@PanelStep04" xs="12" sm="12" md="8" lg="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-10" Outlined="true" Elevation="3">
+            <div class="d-flex justify-center pb-2 pt-2">
+                <p>O prato que você pensou é <strong>@Prato</strong>?</p>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <MudButton Variant="Variant.Filled" @onclick="(()=>ShowStep04(true))" DropShadow="false" Color="Color.Success">Sim</MudButton>
+                <MudButton Variant="Variant.Filled" @onclick="(()=>ShowStep04(false))" DropShadow="false" Color="Color.Warning">Não</MudButton>
+            </div>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem hidden="@PanelSuccess" xs="12" sm="12" md="8" lg="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-10" Outlined="true" Elevation="3">
+            <div class="d-flex justify-center pb-2 pt-2">
+                <p>Acertei de novo!</p>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <MudButton Variant="Variant.Filled" OnClick="@ShowStart" DropShadow="false" Color="Color.Primary">Ok</MudButton>
+            </div>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem hidden="@PanelAddPrato" xs="12" sm="12" md="8" lg="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-10" Outlined="true" Elevation="3">
+            <div class="d-flex justify-center pb-2 pt-2">
+                <MudTextField @bind-Value="_nomePrato" Label="Qual o prato que você pensou?" Variant="Variant.Filled"></MudTextField>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <MudButton Variant="Variant.Filled" OnClick="@ShowAdicionarPrato" DropShadow="false" Color="Color.Primary">Ok</MudButton>
+                <MudButton Variant="Variant.Filled" OnClick="@ShowStep01" DropShadow="false" Color="Color.Default">Cancelar</MudButton>
+            </div>
+        </MudPaper>
+    </MudItem>
+
+    <MudItem hidden="@PanelAddCaracteristica" xs="12" sm="12" md="8" lg="6" xxl="6">
+        <MudPaper Class="mud-width-full pa-10" Outlined="true" Elevation="3">
+            <div class="d-flex justify-center pb-2 pt-2">
+                <p><MudInputLabel>@NovoPrato é ________ mas @Prato não.</MudInputLabel></p>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <p> <MudTextField @bind-Value="_nomeCaracteristica" Variant="Variant.Filled"></MudTextField></p>
+            </div>
+            <div class="d-flex justify-center pb-2 pt-2">
+                <MudButton Variant="Variant.Filled" OnClick="@ShowAdicionarCaracteristica" DropShadow="false" Color="Color.Success">Ok</MudButton>
+            </div>
+        </MudPaper>
+    </MudItem>
+
+</MudGrid>
