@@ -68,7 +68,10 @@ namespace JogoGourmet.App.Applications
                 foreach (var item in pratos)
                 {
                     acheiPrato = Pratos.FirstOrDefault(x => x.Descricao == item.Descricao);
-
+                    
+                    if (acheiPrato is null)
+                        continue;
+                    
                     Console.WriteLine($"O prato que você pensou é {acheiPrato.Descricao}?");
 
                     if (AcoesApp.OpcaoResposta())
