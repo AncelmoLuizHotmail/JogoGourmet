@@ -7,11 +7,5 @@
         {
             QuestoesApp.CargaInicial();
         }
-
-        public static void PerguntarCaracteristica()
-        {
-            QuestoesApp.PerguntarCaracteristica();
-        }
-
     }
 }

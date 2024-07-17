@@ -15,6 +15,7 @@ namespace JogoGourmet.App.Applications
 
         public static void PerguntarCaracteristica()
         {
+            SolicitacaoInicial();
             QuestoesApp.AfirmarCaracteristica(Pratos, CaracteristicaService.Obter(Caracteristicas));
         }
 
@@ -29,7 +30,7 @@ namespace JogoGourmet.App.Applications
         {
             Console.WriteLine("Acertei de novo!");
             Console.ReadKey();
-            SolicitacaoInicial();
+            PerguntarCaracteristica();
         }
 
         public static void AfirmarCaracteristica(List<Prato> Pratos, string caracteristica)
@@ -37,7 +38,9 @@ namespace JogoGourmet.App.Applications
             foreach (var item in Caracteristicas)
                 PerguntarCaracteristica(item.Descricao);
 
+
             AfirmacaoPrato(Pratos, Pratos.Last().Descricao);
+
         }
 
         public static void PerguntarCaracteristica(string caracteristica)
@@ -68,17 +71,16 @@ namespace JogoGourmet.App.Applications
                 foreach (var item in pratos)
                 {
                     acheiPrato = Pratos.FirstOrDefault(x => x.Descricao == item.Descricao);
-                    
+
                     if (acheiPrato is null)
                         continue;
-                    
+
                     Console.WriteLine($"O prato que você pensou é {acheiPrato.Descricao}?");
 
                     if (AcoesApp.OpcaoResposta())
                         AcertoPrato();
                 }
             }
-
 
             Console.WriteLine("Qual é o prato que você pensou?");
             var novoPrato = PratoService.AdicionarPrato(Console.ReadLine());

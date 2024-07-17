@@ -10,14 +10,21 @@ Console.WriteLine();
 
 do
 {
-    Console.Clear();
+	try
+	{
+        Console.Clear();
 
-    QuestoesApp.SolicitacaoInicial();
-    InteracaoApp.PerguntarCaracteristica();
+        QuestoesApp.PerguntarCaracteristica();
 
-    Console.WriteLine("Vamos jogar de novo?");
+        Console.WriteLine("Vamos jogar de novo?");
 
-    valor = AcoesApp.OpcaoResposta();
+        valor = AcoesApp.OpcaoResposta();
+    }
+	catch (Exception)
+	{
+        QuestoesApp.PerguntarCaracteristica();
+        valor = true;
+    }
 } while (valor);
 
 
